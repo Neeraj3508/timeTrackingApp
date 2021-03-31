@@ -1,7 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:timeTrackingApp/app_sign_in/sign_in_page.dart';
+import 'package:time_tracking_app/app_sign_in/landing_page.dart';
+import 'package:time_tracking_app/firebase_auth.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +21,9 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.indigo,
       ),
       debugShowCheckedModeBanner: false,
-      home: SignInPage(),
+      home: LandingPage(
+        auth: Auth(),
+      ),
     );
   }
 }

@@ -1,13 +1,31 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:timeTrackingApp/app_sign_in/sign_in_button.dart';
-import 'package:timeTrackingApp/app_sign_in/social_sign_in_button.dart';
+import 'package:time_tracking_app/app_sign_in/sign_in_button.dart';
+import 'package:time_tracking_app/app_sign_in/social_sign_in_button.dart';
+import 'package:time_tracking_app/firebase_auth.dart';
 
 class SignInPage extends StatelessWidget {
+  const SignInPage({Key key, @required this.auth}) : super(key: key);
+  final AuthBase auth;
+
   Future<void> _signInAnonymously() async {
     try {
-      final userCredentials = await FirebaseAuth.instance.signInAnonymously();
-      print('${userCredentials.user.uid}');
+      await auth.signInAnonymously();
+    } catch (error) {
+      print(error);
+    }
+  }
+
+  Future<void> _signInWithGoogle() async {
+    try {
+      await auth.signInWithGoogle();
+    } catch (error) {
+      print(error);
+    }
+  }
+
+  Future<void> _signInWithFacebook() async {
+    try {
+      await auth.signInWithFacebook();
     } catch (error) {
       print(error);
     }
@@ -44,7 +62,7 @@ class SignInPage extends StatelessWidget {
                 color: Colors.white,
                 textColor: Colors.black,
                 text: "Sign In with Google",
-                onPressed: () {},
+                onPressed: _signInWithGoogle,
               ),
               SizedBox(
                 height: 8.0,
@@ -54,7 +72,7 @@ class SignInPage extends StatelessWidget {
                 color: Colors.indigo,
                 text: "Sign In with Facebook",
                 textColor: Colors.white,
-                onPressed: () {},
+                onPressed: _signInWithFacebook,
               ),
               SizedBox(
                 height: 8.0,

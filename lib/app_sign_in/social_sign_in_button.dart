@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:timeTrackingApp/custom_widget/custom_raised_button.dart';
+import 'package:time_tracking_app/custom_widget/custom_raised_button.dart';
 
 class SocialSignInButton extends CustomRaisedButton {
   SocialSignInButton({
@@ -19,7 +19,7 @@ class SocialSignInButton extends CustomRaisedButton {
                 width: 30.0,
               ),
               Text(
-                "Sign in with Google",
+                text,
                 style: TextStyle(
                   color: textColor,
                 ),
