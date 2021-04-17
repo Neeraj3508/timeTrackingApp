@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:time_tracking_app/app_sign_in/email_signin_form.dart';
-import 'package:time_tracking_app/firebase_auth.dart';
 
 class EmailSignInPage extends StatelessWidget {
-  EmailSignInPage({@required this.auth});
-  final AuthBase auth;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -30,7 +27,7 @@ class EmailSignInPage extends StatelessWidget {
 
   Widget _buildContent() {
     return Container(
-      child: EmailSignInForm(auth: auth),
+      child: EmailSignInForm(),
     );
   }
 }
