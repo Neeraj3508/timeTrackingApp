@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:time_tracking_app/app_sign_in/form_submit_button.dart';
 import 'package:time_tracking_app/app_sign_in/validator.dart';
-import 'package:time_tracking_app/custom_widget/show_alert_dialog.dart';
+import 'package:time_tracking_app/custom_widget/show_exception_alert_dialog.dart';
 import 'package:time_tracking_app/firebase_auth.dart';
 
 enum EmailSignInFormType { signIn, register }
@@ -24,6 +24,15 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
   bool _submitted = false;
   bool _isLoading = false;
 
+  @override
+  void dispose() {
+    _emailFieldController.dispose();
+    _passwordFieldController.dispose();
+    _emailFocusNode.dispose();
+    _passwordFocusNode.dispose();
+    super.dispose();
+  }
+
   void _submit() async {
     setState(() {
       _submitted = true;
@@ -38,10 +47,7 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
       }
       Navigator.of(context).pop();
     } catch (e) {
-      showAlertDialog(context,
-          title: "Sign In Failed",
-          content: e.toString(),
-          defaultActionText: "OK");
+      showExceptionAlertDialog(context, title: 'Sign in Failed', exception: e);
     } finally {
       _isLoading = false;
     }
